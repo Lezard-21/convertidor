@@ -1,4 +1,8 @@
-##Proyecto convertidor
->este es un proyecto que convierte digitos decimales, hexadecimales, binarios y octales
+## Proyecto convertidor
+> Este es un proyecto que convierte sistemas numericos: 
+- decimales
+- hexadecimales
+- binarios 
+- octales
 Documentation is available at http://nginx.org
 
