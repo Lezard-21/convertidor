@@ -16,9 +16,6 @@ function decimalABinario(decimal) {
   
     return binario
   }
-  // const decimal = 25
-  // const binario = decimalABinario(decimal)
-  // console.log(`El valor decimal ${decimal} es equivalente a ${binario} en binario.`)
 
   function decimalAHexadecimal(decimal) {
     if (decimal === 0) {
@@ -35,10 +32,7 @@ function decimalABinario(decimal) {
     }
   return hexadecimal
   }
-  
-  // const hexadecimalResultado = decimalAHexadecimal(decimal)
-  // console.log(`El valor decimal ${decimal} es equivalente a ${hexadecimalResultado} en hexadecimal.`)
- 
+
   function decimalAOctal(decimal) {
     if (decimal === 0) {
       return '0' 
@@ -54,10 +48,7 @@ function decimalABinario(decimal) {
     
     return octal
   }
-  
-  // const octal = decimalAOctal(decimal)
-  // console.log(`El valor decimal ${decimal} es equivalente a ${octal} en octal.`)
-  
+
 /* Binario */
   function binarioAHexadecimal(binario) {
     while (binario.length % 4 !== 0) {
@@ -94,9 +85,6 @@ function decimalABinario(decimal) {
     return resultadoHexadecimal
   }
   
-  // const hexadecimal = binarioAHexadecimal(binario)
-  // console.log(`El valor binario ${binario} es equivalente a ${hexadecimal} en hexadecimal.`)
-  
   function binarioADecimal(binario) {
     let decimal = 0
     const longitud = binario.length
@@ -125,9 +113,6 @@ function decimalABinario(decimal) {
     
     return octal.toString(8);
 }
-  // const octalResultado0 = binarioAOctal(binario)
-  // console.log(`El valor binario ${binario} es equivalente a ${octalResultado0} en octal.`)
-
 
    /**Hecadecimal */ 
   function hexadecimalADecimal(hexadecimal) {
@@ -151,9 +136,6 @@ function decimalABinario(decimal) {
     return decimal
   }
   
-  // const hexadecimalResultado2 = hexadecimalADecimal(hexadecimal)
-  // console.log(`El valor hexadecimal ${hexadecimal} es equivalente a ${hexadecimalResultado2} en decimal.`)
-  
  function hexadecimalABinario(hexadecimal) {
   const digitosHexadecimales = "0123456789ABCDEF";
   let binario = "";
@@ -176,17 +158,11 @@ function decimalABinario(decimal) {
   return binario;
 }
 
-// const resultadoHexadecimal2 = hexadecimalABinario(hexadecimal);
-// console.log(`El valor hexadecimal ${hexadecimal} es equivalente a ${resultadoHexadecimal2} en binario.`);
- 
-
   function hexadecimalAOctal(hexadecimal) {
     const decimal = hexadecimalADecimal(hexadecimal);
     const octal = decimalAOctal(decimal)
     return octal
   }
-  // const hexadecimalOctal = hexadecimalAOctal(hexadecimal)
-  // console.log(`El valor hexadecimal ${hexadecimal} es equivalente a ${hexadecimalOctal} en octal.`)
 
   /**Octa */ 
   function octalADecimal(octal) {
@@ -200,34 +176,22 @@ function decimalABinario(decimal) {
     
     return decimal;
   }
-  
-  // const octalResultado = octalADecimal(octal)
-  // console.log(`El valor octal ${octal} es equivalente a ${octalResultado} en decimal.`)
-  
+
 function octalABinario(octal){
   const decimal = octalADecimal(octal)
   let binario = decimalABinario(decimal)
   return binario
 }
-// const octalBin = octalABinario(octal)
-//   console.log(`El valor octal ${octal} es equivalente a ${octalBin} en binario.`)
 
 function octalAHexadecimal(octal){
   const decimal = octalADecimal(octal)
   let hexadecimal = decimalAHexadecimal(decimal)
   return hexadecimal
 }
-// const octalHexa = octalAHexadecimal(octal)
-//   console.log(`El valor octal ${octal} es equivalente a ${octalHexa} en hexadecimal.`)
-
 
 const loginform = document.getElementById("formulario")
 loginform.addEventListener('submit', event =>{
       event.preventDefault()
-      // console.log(event)
-      // let u = document.getElementById("name").value
-      // let p = document.getElementById("password").value
-      // alert("usuario: "+u+"contraseña: "+p)
       const tipos = ["decimal","binario","hexadecimal","octal"]
       const resultado = document.getElementById("resultado")
       let base = document.getElementById("base").value
