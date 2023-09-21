@@ -5,15 +5,47 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Convertidor</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body{
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+        }
+        form{
+            box-shadow: 10px 10px 15px;
+            width: 300px;
+            border-radius: 5px;
+            border: 1px solid lightgray ;
+            padding: 20px;
+        }
+        input,select{
+            width: 100%;
+            border-radius: 6px;
+            margin-bottom: 20px;
+            padding: 10px;
+            border: 1px solid lightgray ;
+        }
+        #boton{
+            color: white ;
+            background-color: blue;
+        }
+        h1,p{
+            margin: 10px;
+        }
+    </style>
 </head>
 
 <body>
     <h1>Convertidor</h1>
-    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Fuga consequatur delectus qui, reiciendis, quaerat fugit
-        corporis dignissimos facilis voluptatem debitis eos commodi rem laborum earum quibusdam, similique ullam
-        suscipit soluta!</p>
+    <p>Este es un convertidor de sistemas numericos, es capaz de cambiar numeros decimales, binarios, hexadecimales y octales</p>
     <form id="formulario">
-        <fieldset>
             <legend></legend>
             <select name="selector1" id="base">
                 <option value="decimal">Decimal</option>
@@ -30,8 +62,8 @@
             <input type="text" id="numero_convertir">
             <input type="submit" value="convertir">
             <div id="resultado"></div>
-        </fieldset>
     </form>
+
     <script type="module" src="./index.js"></script>
 </body>
 
