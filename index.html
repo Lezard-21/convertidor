@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Convertidor</title>
+</head>
+
+<body>
+    <h1>Convertidor</h1>
+    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Fuga consequatur delectus qui, reiciendis, quaerat fugit
+        corporis dignissimos facilis voluptatem debitis eos commodi rem laborum earum quibusdam, similique ullam
+        suscipit soluta!</p>
+    <form id="formulario">
+        <fieldset>
+            <legend></legend>
+            <select name="selector1" id="base">
+                <option value="decimal">Decimal</option>
+                <option value="binario">Binario</option>
+                <option value="hexadecimal">Hexadecimal</option>
+                <option value="octal">Octal</option>
+            </select>
+            <select name="selector2" id="destino">
+                <option value="decimal">Decimal</option>
+                <option value="binario">Binario</option>
+                <option value="hexadecimal">Hexadecimal</option>
+                <option value="octal">Octal</option>
+            </select>
+            <input type="text" id="numero_convertir">
+            <input type="submit" value="convertir">
+            <div id="resultado"></div>
+        </fieldset>
+    </form>
+    <script type="module" src="./index.js"></script>
+</body>
+
+</html>
