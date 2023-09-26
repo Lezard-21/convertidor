@@ -6,47 +6,101 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Convertidor</title>
     <style>
-        *{
+        * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
         }
-        body{
+
+        body {
             display: flex;
             flex-direction: column;
             align-items: center;
             justify-content: center;
-            font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+            font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
         }
-        form{
+
+        #container {
+            display: flex;
+        }
+
+        #formulario {
             box-shadow: 10px 10px 15px;
             width: 300px;
             border-radius: 5px;
-            border: 1px solid lightgray ;
+            border: 1px solid lightgray;
             padding: 20px;
+            margin-left: 30px;
+            margin-right: 20px;
         }
-        input,select{
+
+        #formulario2 {
+            display: flex;
+            flex-direction: row;
+            flex-wrap: wrap;
+            box-shadow: 10px 10px 15px;
+            width: 600px;
+            border-radius: 5px;
+            border: 1px solid lightgray;
+            padding: 20px;
+            margin-left: 30px;
+            margin-right: 20px;
+            height: fit-content
+        }
+
+        .form2 {
+            width: 45%;
+            margin: 10px;
+        }
+
+        input,
+        select {
             width: 100%;
             border-radius: 6px;
             margin-bottom: 20px;
             padding: 10px;
-            border: 1px solid lightgray ;
+            border: 1px solid lightgray;
         }
-        #boton{
-            color: white ;
-            background-color: blue;
+
+        #convertir,
+        #sumar {
+            color: white;
+            background-color: rgba(0, 0, 220, 0.804);
         }
-        h1,p{
+
+        h1,
+        p {
             margin: 10px;
+        }
+
+        #drag {
+            width: fit-content;
+            cursor: grab;
         }
     </style>
 </head>
 
 <body>
     <h1>Convertidor</h1>
-    <p>Este es un convertidor de sistemas numericos, es capaz de cambiar numeros decimales, binarios, hexadecimales y octales</p>
-    <form id="formulario">
-            <legend></legend>
+    <p>Este es un convertidor de sistemas numericos, es capaz de cambiar numeros decimales, binarios, hexadecimales y
+        octales</p>
+        <script>
+            let valor
+        function allowDrop(ev) {
+            ev.preventDefault();
+        }
+
+        function drag(ev) {
+            valor = ev.target.textContent
+        }
+
+        function drop(ev) {
+            ev.preventDefault();
+            ev.target.value = valor
+        }
+        </script>
+    <div id="container">
+        <form id="formulario">
             <select name="selector1" id="base">
                 <option value="decimal">Decimal</option>
                 <option value="binario">Binario</option>
@@ -59,12 +113,41 @@
                 <option value="hexadecimal">Hexadecimal</option>
                 <option value="octal">Octal</option>
             </select>
-            <input type="text" id="numero_convertir">
-            <input type="submit" value="convertir">
-            <div id="resultado"></div>
-    </form>
+            <input type="text" id="numero_convertir" placeholder="número a convertir" ondrop="drop(event)" ondragover="allowDrop(event)">
+            <input type="submit" value="convertir" id="convertir">
+            <div id="resultado">
+                <p id="drag" draggable="true" ondragstart="drag(event)"></p>
+            </div>
+        </form>
+        
+        <form id="formulario2">
+            <div class="form2">
+                <select name="selector3" id="operacion">
+                    <option value="suma">Suma</option>
+                    <option value="resta">Resta</option>
+                </select>
+                <select name="selector4" id="complemento" disabled>
+                    <option value="sinComplemento"> </option>
+                    <option value="Complemento1">Complemento 1</option>
+                    <option value="Complemento2">Complemento 2</option>
+                </select>
+                <input type="submit" value="Sumar" id="sumar">
+            </div>
 
-    <script type="module" src="./index.js"></script>
+            <div class="form2" >
+                <div ondrop="drop(event)" ondragover="allowDrop(event)">
+                    <input type="text" placeholder="primer numero" id="numero1">
+                </div>
+                <div ondrop="drop(event)" ondragover="allowDrop(event)">
+                    <input type="text" placeholder="segundo numero"  id="numero2">
+                </div>
+                <hr>
+                <div id="resultado">
+                    <p id="resultadoSuma" draggable="true" ondragstart="drag(event)"></p>
+                </div>
+            </div>
+        </form>
+    </div>
+    <script type="module" src="./index.js"></script> 
 </body>
-
 </html>
