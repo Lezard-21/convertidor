@@ -285,77 +285,67 @@ function sumaBinaria(a, b) {
   return result;
 }
 
-function complemeto1(binario) {
-  binario = binario.replace(/0/g, 'x') 
-  binario = binario.replace(/1/g, '0') 
-  binario = binario.replace(/x/g, '1') 
-  console.log(binario)
+function ResultComplemeto1(binario) {
+  binario = sumaBinaria(binario,"1")
   return binario
 }
 
-function complemeto2(binario) {
-  console.log(sumaBinaria(binario, "1"))
-  return sumaBinaria(binario, "1")
-}
-
 function restaBinaria(a, b, comp) {
-  a = '0' + a
-  b = '0' + b
-  let i = a.length - 1;
-  let j = b.length - 1;
-  let borrow = 0;
-  let result = '';
-  let isNegative = false;
+  let biteSignoResultado = document.getElementById('bitSignoResultado')
 
-  // Recorrer ambas cadenas de derecha a izquierda
-  while (i >= 0) {
-    let aBit = i < a.length ? parseInt(a[i]) : 0;
-    let bBit = j >= 0 ? parseInt(b[j]) : 0;
-
+    let bitSignoNumero1 = document.getElementById('selectorBitSigno1').value
+    let bitSignoNumero2 = document.getElementById('selectorBitSigno2').value
     
-
-    // Si hay un préstamo, reducir el bit de 'a'
-    if (borrow) {
-      if (aBit >= 1) {
-        aBit -= borrow;
-        borrow = 0;
-      } else {
-        aBit = 1;
-        borrow = 1;
+    a = bitSignoNumero1 + a
+    b = bitSignoNumero2 + b
+    let i = a.length - 1;
+    let j = b.length - 1;
+    let borrow = 0;
+    let result = '';
+    let isNegative = false;
+  
+    while (i >= 0) {
+      let aBit = i < a.length ? parseInt(a[i]) : 0;
+      let bBit = j >= 0 ? parseInt(b[j]) : 0;
+  
+      if (borrow) {
+        if (aBit >= 1) {
+          aBit -= borrow;
+          borrow = 0;
+        } else {
+          aBit = 1;
+          borrow = 1;
+        }
       }
+  
+      // Si el bit actual de 'b' es mayor que el bit de 'a', tomar prestado
+      if (bBit > aBit) {
+        aBit += 2;
+        borrow = 1;
+        //isNegative = true;
+      }
+  
+      result = (aBit - bBit) + result;
+      i--;
+      j--;
     }
-
-    // Si el bit actual de 'b' es mayor que el bit de 'a', tomar prestado
-    if (bBit > aBit) {
-      aBit += 2;
-      borrow = 1;
+  
+    if(bitSignoNumero1 != bitSignoNumero2 && bitSignoNumero1 == '1') {
       isNegative = true;
     }
 
-    result = (aBit - bBit) + result;
-    i--;
-    j--;
-  }
+    if(isNegative){
+      biteSignoResultado.innerHTML = '1'
+    }else{
+      biteSignoResultado.innerHTML = '0'
+    }
 
-  // Eliminar los ceros a la izquierda
-  result = result.replace(/^0+/, '');
-
-  console.log(result)
-  if (isNegative) {
-    result = '1' + result
-  }
-
-  if (comp == "complemento1") {
-    result = complemeto1(result)
-  }
-  if (comp == "complemento2") {
-    result = complemeto2(complemeto1(result))
-  }
-
-  return result;
+    if (comp == "Complemento1") {
+      result = ResultComplemeto1(result)
+    }
+    console.log(result)
+    return result;
 }
-
-
 
 const form2 = document.getElementById('formulario2')
 const resultado = document.getElementById('resultadoSuma')
@@ -366,13 +356,19 @@ let numero2 = document.getElementById('numero2')
 let boton = document.getElementById('sumar')
 
 operacion.addEventListener('change', (e) => {
+  let bitSignoNumero1 = document.getElementById('selectorBitSigno1')
+  let bitSignoNumero2 = document.getElementById('selectorBitSigno2')
   if (e.target.value == "suma") {
     complemento.disabled = true
     boton.value = "Sumar"
+    bitSignoNumero1.disabled = true
+    bitSignoNumero2.disabled = true
   }
   if (e.target.value == "resta") {
     complemento.disabled = false
     boton.value = "Restar"
+    bitSignoNumero1.disabled = false
+    bitSignoNumero2.disabled = false
   }
 })
 
@@ -385,15 +381,25 @@ form2.addEventListener('submit', (e) => {
   }
 
   if (operacion.value == "resta") {
-    switch (complemento.value) {
-      case "Complemento1":resultado.innerHTML = restaBinaria(numero1.value, numero2.value, "complemento1")
-        break;
-      case "Complemento2":resultado.innerHTML = restaBinaria(numero1.value, numero2.value, "complemento2")
-      break;
-    
-      default:resultado.innerHTML = restaBinaria(numero1.value, numero2.value)
-        break;
-    }
+      switch (complemento.value) {
+        case "Complemento1": resultado.innerHTML = restaBinaria(numero1.value, numero2.value,complemento.value);
+          comprobarEstadoComplemento();         
+          break;
+        case "Complemento2": resultado.innerHTML = restaBinaria(numero1.value, numero2.value,complemento.value);
+          comprobarEstadoComplemento();
+          break;
+        default: resultado.innerHTML = restaBinaria(numero1.value, numero2.value)
+          break;
+      }
+     
   }
 
 });
+
+function comprobarEstadoComplemento() {
+  let bitSignoNumero1 = document.getElementById('selectorBitSigno1').value
+  let bitSignoNumero2 = document.getElementById('selectorBitSigno2').value
+    if (bitSignoNumero2 == "0" && bitSignoNumero1 == "0") {
+        resultado.innerHTML = "Error ingrese por lo menos un numero negativo"
+    }
+}

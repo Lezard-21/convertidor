@@ -49,8 +49,19 @@
         }
 
         .form2 {
-            width: 45%;
+            width: 35%;
             margin: 10px;
+            padding: 10px;
+        }
+
+        #signos{
+            width: 13%;
+            margin-right: -10px;
+            margin-left: 5px;
+        }
+
+        #tipoOperacion{
+            border-right: 2px solid black;
         }
 
         input,
@@ -121,7 +132,7 @@
         </form>
         
         <form id="formulario2">
-            <div class="form2">
+            <div class="form2" id="tipoOperacion">
                 <select name="selector3" id="operacion">
                     <option value="suma">Suma</option>
                     <option value="resta">Resta</option>
@@ -134,11 +145,28 @@
                 <input type="submit" value="Sumar" id="sumar">
             </div>
 
-            <div class="form2" >
-                <div ondrop="drop(event)" ondragover="allowDrop(event)">
+            <div id="signos" class="form2">
+            <div class="bitSigno" >
+                <select id="selectorBitSigno1" disabled>
+                    <option value="0">0</option>
+                    <option value="1">1</option>
+                </select>
+            </div>
+            <div class="bitSigno" >
+                <select id="selectorBitSigno2" disabled>
+                    <option value="0">0</option>
+                    <option value="1">1</option>
+                </select>
+            </div>
+            <div>
+                <p id="bitSignoResultado"></p>
+            </div>
+            </div>
+            <div class="form2">
+                <div ondrop="drop(event)" ondragover="allowDrop(event)" class="bitSigno">
                     <input type="text" placeholder="primer numero" id="numero1">
                 </div>
-                <div ondrop="drop(event)" ondragover="allowDrop(event)">
+                <div ondrop="drop(event)" ondragover="allowDrop(event)" class="bitSigno">
                     <input type="text" placeholder="segundo numero"  id="numero2">
                 </div>
                 <hr>
